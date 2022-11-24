@@ -1,5 +1,5 @@
 import java.util.*;
-class RailTicketBook
+class RailwayTicketBooking
 {
 	public static void main(String[]args)
 	{
@@ -28,7 +28,7 @@ class RailTicketBook
 			Bdt.showTicket();
 			break;
 		}
-		}while(a!=5);
+		}while(a<5);
 	}
 }
 class passengerDetails
@@ -80,8 +80,11 @@ class BookTicket extends passengerDetails
 			obj.setTicket(n, pnr);
 		}
 		else
-			System.out.println("No ticket available");
+			System.out.println("No ticket Available");
 	}
+		else {
+			System.out.println("No Ticket Available");
+		}
 	}
 	
 	
@@ -223,7 +226,7 @@ class AvailableTicket extends passengerDetails
 	void showDetails()
 	{
 	 System.out.println("No.of.Lower No.of.Upper No.of.Middle Total seats");
-	 System.out.println("    "+lower+"\t        "+upper+"\t    "+middle+"\t"+totalseat);
+	 System.out.println("    "+lower+"\t        "+upper+"\t    "+middle+"\t	"+totalseat);
 	}
 }
 class CancelTicket extends passengerDetails{
@@ -238,7 +241,12 @@ class CancelTicket extends passengerDetails{
 		System.out.println("enter the name for cancel");
 		String name=s.next();
 		for(int i=0;i<Pnr.length;i++) {
+			if(Age[i]<5) {
+				cancel(i);
+				break;
+			}
 			if(name.equals(Name[i])) {
+				
 				Pnr[i]=Pnr[6];
 				Name[i]=Name[6];
 				Age[i]=Age[6];
@@ -263,6 +271,12 @@ class CancelTicket extends passengerDetails{
 				Gender[8]=Gender[9];
 				Fare[8]=Fare[9];
 				
+				Pnr[9]=null;
+				Name[9]=null;
+				Age[9]=0;
+				Gender[9]=null;
+				Fare[9]=0;
+				
 				if(Berth[i].equals("Upper"))
 					upper++;
 				else if(Berth[i].equals("Lower"))
@@ -270,7 +284,16 @@ class CancelTicket extends passengerDetails{
 				else
 					middle++;
 		}
+		
+			}
 		}
+	void cancel(int i) {
+		Pnr[i]=null;
+		Name[i]=null;
+		Age[i]=0;
+		Gender[i]=null;
+		Fare[i]=0;
 		
 	}
-}
+		
+	}
